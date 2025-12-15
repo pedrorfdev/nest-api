@@ -3,20 +3,17 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
-  @Column({ length: 500 })
+  @Column({ length: 150 })
   name: string;
 
-  @Column('text')
-  description: string;
+  @Column({ length: 50, unique: true, nullable: false })
+  username: string; 
 
-  @Column()
-  filename: string;
+  @Column({ length: 100, unique: true, nullable: false })
+  email: string; 
 
-  @Column('int')
-  views: number;
-
-  @Column()
-  isPublished: boolean;
+  @Column({ nullable: false, select: false })
+  password: string;
 }
