@@ -1,7 +1,7 @@
 import { BadRequestException, Inject, Injectable } from "@nestjs/common";
 import { USER_REPOSITORY_TOKEN, type IUserRepository } from "../domain/repositories/IUser.repository";
 import type { CreateUserDto } from "../domain/dto/create-user.dto";
-import { User } from "../domain/entities/user";
+import { User } from "../domain/entities/user.entity";
 import bcrypt from "node_modules/bcryptjs";
 
 @Injectable()

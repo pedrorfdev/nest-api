@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { USER_REPOSITORY_TOKEN, type IUserRepository } from '../domain/repositories/IUser.repository';
 import type { UpdateUserDto } from '../domain/dto/update-user.dto';
-import type { User } from '../domain/entities/user';
+import type { User } from '../domain/entities/user.entity';
 
 @Injectable()
 export class UpdateUserService {

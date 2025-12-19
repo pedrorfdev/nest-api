@@ -1,16 +1,15 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
 import type { CreateUserDto } from '../domain/dto/create-user.dto';
 import type { UpdateUserDto } from '../domain/dto/update-user.dto';
-import type { CreateUserService } from '../services/create.service';
-import type { FindAllUsersService } from '../services/find-all.service';
-import type { FindOneUserService } from '../services/find-one.service';
-import type { UpdateUserService } from '../services/update.service';
-import type { DeleteUserService } from '../services/remove.service';
+import { CreateUserService } from '../services/create.service';
+import { FindAllUsersService } from '../services/find-all.service';
+import { FindOneUserService } from '../services/find-one.service';
+import { UpdateUserService } from '../services/update.service';
+import { DeleteUserService } from '../services/remove.service';
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 
 
 @Controller('users')
-@UseGuards(AuthGuard)
 export class UserController {
   constructor(
     private readonly createService: CreateUserService,
@@ -20,6 +19,7 @@ export class UserController {
     private readonly deleteService: DeleteUserService,
   ) {}
 
+  @UseGuards(AuthGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createUserDto: CreateUserDto) {
@@ -36,11 +36,13 @@ export class UserController {
     return this.findOneService.execute(+id);
   }
 
+  @UseGuards(AuthGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.updateService.execute(+id, updateUserDto);
   }
 
+  @UseGuards(AuthGuard)
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {

@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException, type CanActivate, type ExecutionContext } from "@nestjs/common";
-import type { AuthService } from "src/modules/auth/service/auth.service";
-import type { FindOneUserService } from "src/modules/users/services/find-one.service";
+import { AuthService } from "src/modules/auth/service/auth.service";
+import { FindOneUserService } from "src/modules/users/services/find-one.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     const { authorization } = request.headers
 
     if(!authorization || !authorization.startsWith('Bearer '))
-      throw new UnauthorizedException('Invalida Token.')
+      throw new UnauthorizedException('Invalid Token.')
 
     const token = authorization.split(' ')[1]
 

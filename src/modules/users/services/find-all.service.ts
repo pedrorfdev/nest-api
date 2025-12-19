@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { USER_REPOSITORY_TOKEN, type IUserRepository } from "../domain/repositories/IUser.repository";
-import type { User } from "../domain/entities/user";
+import type { User } from "../domain/entities/user.entity";
 
 @Injectable()
 export class FindAllUsersService {

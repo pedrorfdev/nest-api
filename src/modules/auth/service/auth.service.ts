@@ -1,7 +1,6 @@
-import { forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
-import { User } from 'src/modules/users/domain/entities/user';
 import type { LoginDto } from '../domain/dto/login.dto';
 import type { CreateUserDto } from 'src/modules/users/domain/dto/create-user.dto';
 import type { RegisterDto } from '../domain/dto/register.dto';
@@ -10,6 +9,7 @@ import { FindByEmailService } from 'src/modules/users/services/find-by-email.ser
 import { CreateUserService } from 'src/modules/users/services/create.service';
 import type { ValidateTokenDTO } from '../domain/dto/validate-token.dto';
 import { UpdateUserService } from 'src/modules/users/services/update.service';
+import type { User } from 'src/modules/users/domain/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -28,8 +28,15 @@ export class AuthService {
       issuer: 'nest-api-auth',
       audience: 'users',
     };
-
+    
+    
+    console.log(payload, options);
+    const access_token = this.jwtService.sign(payload, options)
+    console.log(access_token);
+    
+    
     return { access_token: this.jwtService.sign(payload, options) };
+
   }
 
   async login({ email, password }: LoginDto) {

@@ -1,6 +1,6 @@
 import {Injectable,NotFoundException,} from '@nestjs/common';
 import type { UpdateUserDto } from '../domain/dto/update-user.dto';
-import { User } from '../domain/entities/user';
+import { User } from '../domain/entities/user.entity';
 import type {
   IUserRepository,
 } from '../domain/repositories/IUser.repository';

@@ -1,6 +1,6 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { User } from "./domain/entities/user";
+import { User } from "./domain/entities/user.entity";
 import { USER_REPOSITORY_TOKEN } from "./domain/repositories/IUser.repository";
 import { UserRepository } from "./infra/users.repository";
 import { CreateUserService } from "./services/create.service";
@@ -27,6 +27,6 @@ import { AuthModule } from "../auth/auth.module";
       useClass: UserRepository
     }
   ],
-  exports: [TypeOrmModule, FindByEmailService, CreateUserService, UpdateUserService]
+  exports: [TypeOrmModule, FindByEmailService, CreateUserService, UpdateUserService, FindOneUserService]
 })
 export class UserModule{}
